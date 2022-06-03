@@ -39,3 +39,6 @@ lerna-debug.log*
 
 # prisma
 prisma/migrations/
+
+# vscode
+.vscode

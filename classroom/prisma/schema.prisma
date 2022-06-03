@@ -8,5 +8,38 @@ datasource db {
 }
 
 model Student {
-  id String @id @default(uuid())
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  enrollments Enrollment[]
+
+  @@map("students")
+}
+
+model Course {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  enrollments Enrollment[]
+
+  @@map("courses")
+}
+
+model Enrollment {
+  id         String    @id @default(uuid())
+  studentId  String
+  courseId   String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+  canceledAt DateTime?
+
+  student Student @relation(fields: [studentId], references: [id])
+
+  course Course @relation(fields: [courseId], references: [id])
+
+  @@map("enrollments")
 }
