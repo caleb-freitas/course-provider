@@ -9,6 +9,7 @@ import { ProductsService } from '../services/products.service';
 import { PurchasesResolver } from './graphql/resolvers/purchases.resolver';
 import { PurchasesService } from '../services/purchases.service';
 import { CustomersService } from '../services/customers.service';
+import { CustomersResolver } from './graphql/resolvers/customers.resolvers';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CustomersService } from '../services/customers.service';
   providers: [
     ProductsResolver,
     PurchasesResolver,
+    CustomersResolver,
     ProductsService,
     PurchasesService,
     CustomersService,

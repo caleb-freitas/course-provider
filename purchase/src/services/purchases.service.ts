@@ -33,4 +33,15 @@ export class PurchasesService {
       },
     });
   }
+
+  async listAllFromCustomer(customerId: string) {
+    return this.prisma.purchase.findMany({
+      where: {
+        customerId,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
 }
