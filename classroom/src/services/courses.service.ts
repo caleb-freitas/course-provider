@@ -6,11 +6,11 @@ import slugify from 'slugify'
 export class CoursesService {
   constructor(private prisma: PrismaService) {}
 
-  async createCourse(title: string) {
-    const slug = slugify(title, { lower: true })
+  async createCourse(title: string, slug?: string) {
+    const courseSlug = slug ?? slugify(title, { lower: true })
     const course = await this.prisma.course.findUnique({
       where: {
-        slug
+        slug: courseSlug
       }
     })
     if (course) {
@@ -19,11 +19,10 @@ export class CoursesService {
     return await this.prisma.course.create({
       data: {
         title,
-        slug
+        slug: courseSlug
       }
     })
   }
-
 
   async listAllCourses() {
     return await this.prisma.course.findMany()
@@ -33,6 +32,14 @@ export class CoursesService {
     return await this.prisma.course.findUnique({
       where: {
         id
+      }
+    })
+  }
+
+  async getCourseBySlug(slug: string) {
+    return await this.prisma.course.findUnique({
+      where: {
+        slug
       }
     })
   }
