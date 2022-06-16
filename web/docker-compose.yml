@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  web:
+    container_name: web
+    build: .
+    entrypoint: sh -c "yarn && yarn dev"
+    restart: always
+    volumes:
+      - .:/home/node/app
+    ports:
+      - 3000:3000
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
+    networks:
+      - web_network
+
+networks:
+  web_network:
+    driver: bridge
