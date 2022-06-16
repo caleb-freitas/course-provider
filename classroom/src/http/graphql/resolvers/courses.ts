@@ -28,7 +28,7 @@ export class CoursesResolver {
     @Args('id') id: string,
     @CurrentUser() user: AuthUser
   ) {
-    const student = await this.studentsService.getStudentByAuthStudentId(user.sub)
+    const student = await this.studentsService.getStudentByauthUserId(user.sub)
     if (!student) {
       throw new Error('Student not found')
     }
