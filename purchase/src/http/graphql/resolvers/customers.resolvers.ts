@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Parent, Query, ResolveField, Resolver, ResolveReference } from '@nestjs/graphql';
 import { Purchase } from '@prisma/client';
 import { CustomersService } from '../../../services/customers.service';
 import { PurchasesService } from '../../../services/purchases.service';
@@ -20,7 +20,7 @@ export class CustomersResolver {
     @CurrentUser()
     user: AuthUser
   ) {
-    return this.customersService.getCustomerByAuthCustomerId(user.sub)
+    return this.customersService.getCustomerByauthUserId(user.sub)
   }
 
   @ResolveField()
@@ -29,5 +29,10 @@ export class CustomersResolver {
     customer: Customer,
   ) {
     return this.purchasesService.listAllFromCustomer(customer.id);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { authUserId: string }) {
+    return this.customersService.getCustomerByauthUserId(reference.authUserId)
   }
 }
