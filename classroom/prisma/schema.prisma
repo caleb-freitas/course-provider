@@ -9,7 +9,7 @@ datasource db {
 
 model Student {
   id            String   @id @default(uuid())
-  authStudentId String?  @unique
+  authUserId String?  @unique
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now()) @updatedAt
 

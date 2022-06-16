@@ -9,10 +9,10 @@ export class StudentsService {
     return await this.prisma.student.findMany()
   }
 
-  async getStudentByAuthStudentId(authStudentId: string) {
+  async getStudentByauthUserId(authUserId: string) {
     return await this.prisma.student.findUnique({
       where: {
-        authStudentId
+        authUserId
       }
     })
   }
@@ -25,10 +25,10 @@ export class StudentsService {
     })
   }
 
-  async createStudent(authStudentId: string) {
+  async createStudent(authUserId: string) {
     return await this.prisma.student.create({
       data: {
-        authStudentId
+        authUserId
       }
     })
   }

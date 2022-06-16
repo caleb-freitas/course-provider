@@ -5,18 +5,18 @@ import { PrismaService } from '../database/prisma/prisma.service';
 export class CustomersService {
   constructor(private prisma: PrismaService) {}
 
-  async createCustomer(authCustomerId: string) {
+  async createCustomer(authUserId: string) {
     return await this.prisma.customer.create({
       data: {
-        authCustomerId
+        authUserId
       }
     })
   }
 
-  async getCustomerByAuthCustomerId(authCustomerId: string) {
+  async getCustomerByauthUserId(authUserId: string) {
     return await this.prisma.customer.findUnique({
       where: {
-        authCustomerId
+        authUserId
       },
     });
   }

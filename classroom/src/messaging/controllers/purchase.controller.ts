@@ -5,7 +5,7 @@ import { EnrollmentsService } from "../../services/enrollments.service";
 import { StudentsService } from "../../services/students.service";
 
 export type Customer = {
-  authCustomerId: string;
+  authUserId: string;
 }
 
 export type Product = {
@@ -32,15 +32,15 @@ export class PurchaseController {
     @Payload('value')
     payload: PurchaseCreatedPayload
   ) {
-    const authStudentId = payload.customer.authCustomerId
+    const authUserId = payload.customer.authUserId
     const slug = payload.product.slug
     const title = payload.product.title
-    let student = await this.studentsService.getStudentByAuthStudentId(
-      authStudentId
+    let student = await this.studentsService.getStudentByauthUserId(
+      authUserId
     )
     if (!student) {
       student = await this.studentsService.createStudent(
-        authStudentId
+        authUserId
       )
     }
     let course = await this.coursesService.getCourseBySlug(slug)

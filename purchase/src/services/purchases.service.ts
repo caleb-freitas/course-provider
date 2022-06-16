@@ -33,7 +33,7 @@ export class PurchasesService {
     })
     this.kafkaService.emit('purchase.purchase-created', {
       customer: {
-        authCustomerId: customer.authCustomerId
+        authUserId: customer.authUserId
       },
       product: {
         id: product.id,
