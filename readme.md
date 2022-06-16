@@ -1,6 +1,6 @@
 # Ignite Lab
 
-Coming soon...
+A microservice application that simulates a course purchase platform and virtual study classroom
 
 ## Running the application
 
@@ -8,10 +8,6 @@ Coming soon...
 2. Start the Purchase service. [See instructions](./purchase/readme.md)
 3. Start the Classroom service. [See instructions](./classroom/readme.md)
 4. Start the web application. [See instructions](./web/readme.md)
-
-## Using the application
-
-Coming soon...
 
 ### Tips
 
